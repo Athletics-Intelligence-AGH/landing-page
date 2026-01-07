@@ -1,14 +1,25 @@
 ---
 import Container from "@components/container.astro";
 import Layout from "@layouts/Layout.astro";
+import {defaultLang, isLang, type Lang, languages, t} from "../../i18n";
+
+export function getStaticPaths() {
+    return languages.map((lang) => ({
+        params: { lang },
+        props: { lang },
+    }));
+}
+
+const langParam = Astro.params.lang ?? defaultLang;
+const lang: Lang = isLang(langParam) ? langParam : defaultLang;
 ---
 
-<Layout title="404 Not Found">
+<Layout lang={lang}>
   <Container>
     <div class="min-h-[calc(100vh-16rem)] flex items-center justify-center">
       <div class="mt-16 text-center">
         <h1 class="text-4xl lg:text-5xl font-bold lg:tracking-tight">404</h1>
-        <p class="text-lg mt-4 text-slate-600">Page not found.</p>
+        <p class="text-lg mt-4 text-slate-600">{t(lang, "notFound")}</p>
       </div>
     </div>
   </Container>
