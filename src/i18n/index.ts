@@ -22,7 +22,8 @@ const dict = {
     contactHeader: "Contact",
     contactSubHeader: "Feel free to reach us.",
     contactFormHeader: "Contact AGH Athletics Intelligence",
-    contactFormDescription: "Have something to say? Send us an email."
+    contactFormDescription: "Have something to say? Send us an email.",
+    notFound: "Page not found."
   },
   pl: {
     heroHeader: "Wdrażamy AI w Sporcie",
@@ -42,7 +43,8 @@ const dict = {
     contactHeader: "Kontakt",
     contactSubHeader: "Zapraszamy do kontaktu.",
     contactFormHeader: "Kontakt AGH Athletics Intelligence",
-    contactFormDescription: "Chcesz się czegoś dowiedzieć? Wyślij nam maila."
+    contactFormDescription: "Chcesz się czegoś dowiedzieć? Wyślij nam maila.",
+    notFound: "Nie znaleziono strony."
   },
 } satisfies Record<Lang, Record<string, string>>;
 
