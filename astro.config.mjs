@@ -4,8 +4,11 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import icon from "astro-icon";
 
+import netlify from "@astrojs/netlify";
+
 export default defineConfig({
   integrations: [tailwind(), mdx(), sitemap(), icon()],
+
   i18n: {
     defaultLocale: "en",
     locales: ["en", "pl"],
@@ -13,4 +16,6 @@ export default defineConfig({
       prefixDefaultLocale: true,
     },
   },
+
+  adapter: netlify(),
 });
