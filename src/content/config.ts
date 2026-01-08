@@ -18,8 +18,8 @@ export type TeamMemberData = z.infer<ReturnType<typeof teamMemberSchema>>;
 
 const managementCollection = defineCollection({
   loader: glob({
-    pattern: "**/*.{md,mdx}",
-    base: new URL("./team/management/", import.meta.url),
+    pattern: '**/*.{md,mdx}',
+    base: new URL('./team/management/', import.meta.url)
   }),
   schema: teamMemberSchema
 });

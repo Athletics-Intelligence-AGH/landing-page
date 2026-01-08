@@ -33,13 +33,13 @@ const canBeDisplayed = (draft: boolean, publishDate: Date): boolean => {
 };
 
 const supervisorMembers = (
-  await getCollection("supervisors", ({ data }) => {
+  await getCollection('supervisors', ({ data }) => {
     return canBeDisplayed(data.draft, data.publishDate);
   })
 ).sort(byOrderThenName);
 
 const managementMembers = (
-  await getCollection("management", ({ data }) => {
+  await getCollection('management', ({ data }) => {
     return canBeDisplayed(data.draft, data.publishDate);
   })
 ).sort(byOrderThenName);
