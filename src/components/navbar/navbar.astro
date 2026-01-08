@@ -1,9 +1,9 @@
 ---
-import Container from "@components/container.astro";
-import Dropdown from "./dropdown.astro";
-import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
+import Container from '@components/container.astro';
+import Dropdown from './dropdown.astro';
+import { Astronav, MenuItems, MenuIcon } from 'astro-navbar';
 
-import { t, type Lang } from "../../i18n";
+import { t, type Lang } from '../../i18n';
 
 const { lang } = Astro.props as { lang: Lang };
 
@@ -15,11 +15,11 @@ interface MenuItem {
 }
 
 const menuitems: MenuItem[] = [
-  { title: t(lang, "navAbout"), path: `/${lang}/about` },
-  { title: t(lang, "navContact"), path: `/${lang}/contact` },
+  { title: t(lang, 'navAbout'), path: `/${lang}/about` },
+  { title: t(lang, 'navContact'), path: `/${lang}/contact` }
 ];
 
-const other: Lang = lang === "en" ? "pl" : "en";
+const other: Lang = lang === 'en' ? 'pl' : 'en';
 const otherPath = Astro.url.pathname.replace(/^\/(en|pl)(\/|$)/, `/${other}$2`);
 
 const homeHref = `/${lang}/`;
@@ -30,8 +30,7 @@ const homeHref = `/${lang}/`;
     <Astronav>
       <div class="flex w-full lg:w-auto items-center justify-between">
         <a href={homeHref} class="text-lg">
-          AGH <span class="font-bold text-slate-800">Athletics </span
-        ><span class="text-slate-500">Intelligence</span>
+          AGH <span class="font-bold text-slate-800">Athletics </span><span class="text-slate-500">Intelligence</span>
         </a>
 
         <div class="block lg:hidden">
@@ -41,38 +40,33 @@ const homeHref = `/${lang}/`;
 
       <MenuItems class="hidden w-full lg:w-auto mt-2 lg:flex lg:mt-0">
         <ul class="flex flex-col lg:flex-row lg:gap-3">
-          {menuitems.map((item, index) => (
-            <>
-              {item.children && (
-                <Dropdown
-                  title={item.title}
-                  children={item.children}
-                  lastItem={index === menuitems.length - 1}
-                />
-              )}
+          {
+            menuitems.map((item, index) => (
+              <>
+                {item.children && (
+                  <Dropdown title={item.title} children={item.children} lastItem={index === menuitems.length - 1} />
+                )}
 
-              {!item.children && (
-                <li>
-                  <a
-                    href={item.path}
-                    class="flex lg:px-3 py-2 items-center text-gray-600 hover:text-gray-900"
-                  >
-                    <span>{item.title}</span>
-                    {item.badge && (
-                      <span class="ml-1 px-2 py-0.5 text-[10px] animate-pulse font-semibold uppercase text-white bg-indigo-600 rounded-full">
-                        New
-                      </span>
-                    )}
-                  </a>
-                </li>
-              )}
-            </>
-          ))}
+                {!item.children && (
+                  <li>
+                    <a href={item.path} class="flex lg:px-3 py-2 items-center text-gray-600 hover:text-gray-900">
+                      <span>{item.title}</span>
+                      {item.badge && (
+                        <span class="ml-1 px-2 py-0.5 text-[10px] animate-pulse font-semibold uppercase text-white bg-indigo-600 rounded-full">
+                          New
+                        </span>
+                      )}
+                    </a>
+                  </li>
+                )}
+              </>
+            ))
+          }
         </ul>
 
         <div class="ml-4 flex items-center gap-2">
           <a href={otherPath} class="text-sm text-gray-600 hover:text-gray-900">
-            {other === "en" ? t(lang, "langEN") : t(lang, "langPL")}
+            {other === 'en' ? t(lang, 'langEN') : t(lang, 'langPL')}
           </a>
         </div>
       </MenuItems>
