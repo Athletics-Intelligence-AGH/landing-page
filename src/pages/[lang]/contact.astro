@@ -1,39 +1,39 @@
 ---
-import Container from "@components/container.astro";
-import Sectionhead from "@components/sectionhead.astro";
-import Layout from "@layouts/Layout.astro";
-import { Icon } from "astro-icon/components";
-import { defaultLang, isLang, type Lang, languages, t } from "../../i18n";
+import Container from '@components/container.astro';
+import Sectionhead from '@components/sectionhead.astro';
+import Layout from '@layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import { defaultLang, isLang, type Lang, languages, t } from '../../i18n';
 
 export function getStaticPaths() {
   return languages.map((lang) => ({
     params: { lang },
-    props: { lang },
+    props: { lang }
   }));
 }
 
 const langParam = Astro.params.lang ?? defaultLang;
 const lang: Lang = isLang(langParam) ? langParam : defaultLang;
-
 ---
 
 <Layout lang={lang}>
   <Container>
     <Sectionhead>
-      <Fragment slot="title">{t(lang, "contactHeader")}</Fragment>
-      <Fragment slot="desc">{t(lang, "contactSubHeader")}</Fragment>
+      <Fragment slot="title">{t(lang, 'contactHeader')}</Fragment>
+      <Fragment slot="desc">{t(lang, 'contactSubHeader')}</Fragment>
     </Sectionhead>
 
     <div class="grid md:grid-cols-1 gap-10 mx-auto max-w-4xl mt-16">
       <div>
-        <h2 class="font-medium text-2xl text-gray-800">{t(lang, "contactFormHeader")}</h2>
+        <h2 class="font-medium text-2xl text-gray-800">
+          {t(lang, 'contactFormHeader')}
+        </h2>
         <p class="text-lg leading-relaxed text-slate-500 mt-3">
-          {t(lang, "contactFormDescription")}
+          {t(lang, 'contactFormDescription')}
         </p>
         <div class="mt-5">
           <div class="flex items-center mt-2 space-x-2 text-gray-600">
-            <Icon class="text-gray-400 w-4 h-4" name="uil:envelope" /><a
-              href="mailto:hello@astroshipstarter.com"
+            <Icon class="text-gray-400 w-4 h-4" name="uil:envelope" /><a href="mailto:hello@astroshipstarter.com"
               >athletic@agh.edu.pl</a
             >
           </div>

@@ -1,9 +1,9 @@
 ---
-import Footer from "@components/footer.astro";
-import Navbar from "@components/navbar/navbar.astro";
-import "@fontsource-variable/inter/index.css";
+import Footer from '@components/footer.astro';
+import Navbar from '@components/navbar/navbar.astro';
+import '@fontsource-variable/inter/index.css';
 import '@fontsource-variable/bricolage-grotesque';
-import { type Lang } from "../i18n";
+import { type Lang } from '../i18n';
 
 export interface Props {
   lang: Lang;
@@ -12,7 +12,7 @@ export interface Props {
 const { lang } = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
