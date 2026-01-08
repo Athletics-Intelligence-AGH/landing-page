@@ -5,12 +5,12 @@ import Layout from '@layouts/Layout.astro';
 import Container from '@components/container.astro';
 import Sectionhead from '@components/sectionhead.astro';
 import { defaultLang, isLang, type Lang, languages, t } from '../../i18n';
-import type { TeamMemberData } from "../../content/config.ts";
+import type { TeamMemberData } from '../../content/config.ts';
 
 export function getStaticPaths() {
   return languages.map((lang) => ({
     params: { lang },
-    props: { lang },
+    props: { lang }
   }));
 }
 
@@ -32,13 +32,17 @@ const canBeDisplayed = (draft: boolean, publishDate: Date): boolean => {
   return !draft && publishDate < new Date();
 };
 
-const supervisorMembers = (await getCollection("supervisors", ({ data }) => {
-  return canBeDisplayed(data.draft, data.publishDate);
-})).sort(byOrderThenName);
+const supervisorMembers = (
+  await getCollection("supervisors", ({ data }) => {
+    return canBeDisplayed(data.draft, data.publishDate);
+  })
+).sort(byOrderThenName);
 
-const managementMembers = (await getCollection("management", ({ data }) => {
-  return canBeDisplayed(data.draft, data.publishDate);
-})).sort(byOrderThenName);
+const managementMembers = (
+  await getCollection("management", ({ data }) => {
+    return canBeDisplayed(data.draft, data.publishDate);
+  })
+).sort(byOrderThenName);
 ---
 
 <Layout lang={lang}>
@@ -53,10 +57,10 @@ const managementMembers = (await getCollection("management", ({ data }) => {
         {t(lang, 'aboutLongerDescription')}
       </p>
     </div>
-    <h2 class="text-2xl mt-8 max-w-4xl mx-auto">{t(lang, "supervisorsTeamGroup")}</h2>
+    <h2 class="text-2xl mt-8 max-w-4xl mx-auto">{t(lang, 'supervisorsTeamGroup')}</h2>
     <div class="grid md:grid-cols-3 gap-10 mx-auto max-w-4xl mt-12">
       {
-        supervisorMembers.map(({ data: { name, avatar, title }}) => (
+        supervisorMembers.map(({ data: { name, avatar, title } }) => (
           <div class="group">
             <div class="w-full aspect-square">
               <Image
@@ -71,18 +75,16 @@ const managementMembers = (await getCollection("management", ({ data }) => {
 
             <div class="mt-4 text-center">
               <h2 class="text-lg text-gray-800">{name}</h2>
-              <h3 class="text-sm text-slate-500">
-                {t(lang, title)}
-              </h3>
+              <h3 class="text-sm text-slate-500">{t(lang, title)}</h3>
             </div>
           </div>
         ))
       }
     </div>
-    <h2 class="text-2xl mt-8 max-w-4xl mx-auto">{t(lang, "managementTeamGroup")}</h2>
+    <h2 class="text-2xl mt-8 max-w-4xl mx-auto">{t(lang, 'managementTeamGroup')}</h2>
     <div class="grid md:grid-cols-3 gap-10 mx-auto max-w-4xl mt-12">
       {
-        managementMembers.map(({ data: { avatar, name, title }}) => (
+        managementMembers.map(({ data: { avatar, name, title } }) => (
           <div class="group">
             <div class="w-full aspect-square">
               <Image
