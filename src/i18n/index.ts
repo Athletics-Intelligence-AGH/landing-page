@@ -12,8 +12,8 @@ const dict = {
     joinButton: "Fill up form",
     navAbout: "About Us",
     navContact: "Contact",
-    langEN: "🇬🇧English",
-    langPL: "🇵🇱Polish",
+    langEN: "🇬🇧",
+    langPL: "🇵🇱",
     aboutHeader: "Empowering the sport with AI.",
     aboutSubHeader: "Get to know our members.",
     aboutLongerDescription: "We bring together students who believe the future of sport is data-driven. Our mission is to develop responsible AI that improves performance, supports smarter coaching, and unlocks new ways for fans to experience the game. We run project teams, workshops, and partnerships that turn curiosity into working prototypes.",
@@ -23,7 +23,11 @@ const dict = {
     contactSubHeader: "Feel free to reach us.",
     contactFormHeader: "Contact AGH Athletics Intelligence",
     contactFormDescription: "Have something to say? Send us an email.",
-    notFound: "Page not found."
+    notFound: "Page not found.",
+    presidentTitle: "President",
+    vicePresidentTitle: "Vice President",
+    supervisorTitle: "Supervisor SKN",
+    academicSupervisorTitle: "Academic Supervisor SKN",
   },
   pl: {
     heroHeader: "Wdrażamy AI w Sporcie",
@@ -33,8 +37,8 @@ const dict = {
     joinButton: "Wypełnij formularz",
     navAbout: "O nas",
     navContact: "Kontakt",
-    langEN: "🇬🇧Angielski",
-    langPL: "🇵🇱Polski",
+    langEN: "🇬🇧",
+    langPL: "🇵🇱",
     aboutHeader: "O nas",
     aboutSubHeader: "Poznaj nasz zespół.",
     aboutLongerDescription: "Zrzeszamy studentów, którzy wierzą, że przyszłość sportu opiera się na danych. Naszą misją jest opracowanie odpowiedzialnej sztucznej inteligencji, która poprawia wyniki, wspiera inteligentniejsze treningi i otwiera przed kibicami nowe możliwości doświadczania meczów. Prowadzimy zespoły projektowe, warsztaty i partnerstwa, które przekształcają ciekawość w działające prototypy.",
@@ -44,7 +48,11 @@ const dict = {
     contactSubHeader: "Zapraszamy do kontaktu.",
     contactFormHeader: "Kontakt AGH Athletics Intelligence",
     contactFormDescription: "Chcesz się czegoś dowiedzieć? Wyślij nam maila.",
-    notFound: "Nie znaleziono strony."
+    notFound: "Nie znaleziono strony.",
+    presidentTitle: "Prezes",
+    vicePresidentTitle: "Wiceprezes",
+    supervisorTitle: "Opiekun SKN",
+    academicSupervisorTitle: "Opiekun naukowy SKN",
   },
 } satisfies Record<Lang, Record<string, string>>;
 
