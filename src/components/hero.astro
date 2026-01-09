@@ -4,6 +4,7 @@ import heroImage from 'assets/hero.png';
 import Link from '@components/ui/link.astro';
 import { Icon } from 'astro-icon/components';
 import { t } from '../i18n';
+import Glowbutton from '@components/glowbutton.astro';
 
 const { lang } = Astro.props;
 ---
@@ -27,17 +28,9 @@ const { lang } = Astro.props;
       {t(lang, 'heroDescription')}
     </p>
     <div class="mt-6 flex flex-col sm:flex-row gap-3">
-      <Link
-        size="lg"
-        style="outline"
-        rel="noopener"
-        href="https://github.com/Athletics-Intelligence-AGH"
-        class="flex gap-1 items-center justify-center"
-        target="_blank"
-      >
+      <Glowbutton href="https://github.com/Athletics-Intelligence-AGH" label="GitHub" variant="light">
         <Icon class="text-black w-4 h-4" name="bx:bxl-github" />
-        GitHub
-      </Link>
+      </Glowbutton>
     </div>
   </div>
 </main>
