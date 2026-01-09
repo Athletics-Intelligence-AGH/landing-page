@@ -1,5 +1,6 @@
 ---
 import type { NewsData } from '../content/config.ts';
+import { Image } from 'astro:assets';
 import { type Lang, t } from '../i18n';
 
 interface Props {
@@ -43,8 +44,8 @@ const date = publishDate
       image && (
         <div class="relative">
           <img
-            src={image.src ?? image}
-            alt={image.alt ?? title}
+            src={image.src}
+            alt={image.alt}
             loading="lazy"
             class="h-44 w-full object-cover transition duration-300 group-hover:scale-[1.02]"
           />
