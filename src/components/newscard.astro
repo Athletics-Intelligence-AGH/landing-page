@@ -8,7 +8,7 @@ interface Props {
 }
 
 const {
-  news: { title, shortDescription, slug, publishDate, image }, // <- image optional
+  news: { title, shortDescription, slug, publishDate, image },
   lang
 } = Astro.props;
 
@@ -48,7 +48,6 @@ const date = publishDate
             loading="lazy"
             class="h-44 w-full object-cover transition duration-300 group-hover:scale-[1.02]"
           />
-          {/* subtle fade for readability / polish */}
           <div
             class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/10 via-black/0 to-black/0
                  dark:from-black/25"
