@@ -27,14 +27,12 @@ const homeHref = `/${lang}/`;
 ---
 
 <div class="sticky top-0 z-50 [--nav-h:64px]">
-  <div
-    class="border-b border-slate-200/70 bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/50 dark:border-slate-800/70 dark:bg-slate-950/70 dark:supports-[backdrop-filter]:bg-slate-950/50"
-  >
+  <div class="border-b border-slate-200/70 bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/50">
     <Container>
       <header class="flex h-16 items-center justify-between">
-        <a href={homeHref} class="text-lg font-medium tracking-tight text-slate-900 dark:text-slate-100">
+        <a href={homeHref} class="text-lg font-medium tracking-tight text-slate-900">
           AGH <span class="font-bold">Athletics</span>{' '}
-          <span class="text-slate-500 dark:text-slate-400">Intelligence</span>
+          <span class="text-slate-500 text-slate-400">Intelligence</span>
         </a>
 
         <nav class="hidden lg:flex lg:items-center lg:gap-2">
@@ -50,7 +48,7 @@ const homeHref = `/${lang}/`;
                     <li>
                       <a
                         href={item.path}
-                        class="inline-flex items-center rounded-xl px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100 hover:text-slate-900 dark:text-slate-200 dark:hover:bg-slate-900 dark:hover:text-white"
+                        class="inline-flex items-center rounded-xl px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100 hover:text-slate-900"
                       >
                         <span>{item.title}</span>
 
@@ -69,7 +67,7 @@ const homeHref = `/${lang}/`;
 
           <a
             href={otherPath}
-            class="inline-flex items-center rounded-xl px-3 py-2 text-sm font-medium text-slate-700 transitionhover:bg-slate-100 hover:text-slate-900 dark:text-slate-200 dark:hover:bg-slate-900 dark:hover:text-white"
+            class="inline-flex items-center rounded-xl px-3 py-2 text-sm font-medium text-slate-700 transitionhover:bg-slate-100 hover:text-slate-900"
           >
             {otherLabel}
           </a>

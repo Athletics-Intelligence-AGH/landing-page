@@ -76,7 +76,7 @@ export default function MobileMenu({ items, otherPath, otherLabel }: Props) {
     <>
       <button
         type="button"
-        className="inline-flex items-center justify-center rounded-xl p-2 transition hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 dark:hover:bg-slate-900 dark:focus-visible:ring-slate-600"
+        className="inline-flex items-center justify-center rounded-xl p-2 transition hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
         aria-haspopup="dialog"
         aria-expanded={open}
         aria-controls={panelId}
@@ -88,7 +88,7 @@ export default function MobileMenu({ items, otherPath, otherLabel }: Props) {
             <motion.svg
               key="hamburger"
               viewBox="0 0 24 24"
-              className="h-5 w-5 text-slate-900 dark:text-slate-100"
+              className="h-5 w-5 text-slate-900"
               aria-hidden="true"
               initial={{ opacity: 0, x: -6 }}
               animate={{ opacity: 1, x: 0 }}
@@ -101,7 +101,7 @@ export default function MobileMenu({ items, otherPath, otherLabel }: Props) {
             <motion.svg
               key="close"
               viewBox="0 0 24 24"
-              className="h-5 w-5 text-slate-900 dark:text-slate-100"
+              className="h-5 w-5 text-slate-900"
               aria-hidden="true"
               initial={{ opacity: 0, x: -6 }}
               animate={{ opacity: 1, x: 0 }}
@@ -141,7 +141,7 @@ export default function MobileMenu({ items, otherPath, otherLabel }: Props) {
               role="dialog"
               aria-modal="true"
               className="relative h-[calc(100dvh-var(--nav-h,64px))] w-full overflow-y-auto
-                         bg-white/90 backdrop-blur-xl dark:bg-slate-950/90"
+                         bg-white/90 backdrop-blur-xl"
               initial={{ y: -10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -10, opacity: 0 }}
@@ -161,7 +161,7 @@ export default function MobileMenu({ items, otherPath, otherLabel }: Props) {
                         return (
                           <motion.li key={item.title} variants={itemVariants}>
                             <details className="group rounded-2xl">
-                              <summary className="flex cursor-pointer list-none items-center justify-between rounded-2xl px-4 py-3 text-sm font-medium text-slate-900 transition hover:bg-slate-100 dark:text-slate-100 dark:hover:bg-slate-900">
+                              <summary className="flex cursor-pointer list-none items-center justify-between rounded-2xl px-4 py-3 text-sm font-medium text-slate-900 transition hover:bg-slate-100">
                                 <span>{item.title}</span>
                                 <span className="text-slate-500 transition group-open:rotate-180">▾</span>
                               </summary>
@@ -172,7 +172,7 @@ export default function MobileMenu({ items, otherPath, otherLabel }: Props) {
                                     <a
                                       href={c.path}
                                       onClick={() => setOpen(false)}
-                                      className="block rounded-2xl px-4 py-2.5 text-sm text-slate-700 transition hover:bg-slate-100 hover:text-slate-90 dark:text-slate-200 dark:hover:bg-slate-900 dark:hover:text-white"
+                                      className="block rounded-2xl px-4 py-2.5 text-sm text-slate-700 transition hover:bg-slate-100 hover:text-slate-90"
                                     >
                                       {c.title}
                                     </a>
@@ -189,7 +189,7 @@ export default function MobileMenu({ items, otherPath, otherLabel }: Props) {
                           <a
                             href={item.path}
                             onClick={() => setOpen(false)}
-                            className="flex items-center justify-between rounded-2xl px-4 py-3 text-sm font-medium text-slate-900 transition hover:bg-slate-100 dark:text-slate-100 dark:hover:bg-slate-900"
+                            className="flex items-center justify-between rounded-2xl px-4 py-3 text-sm font-medium text-slate-900 transition hover:bg-slate-100"
                           >
                             <span>{item.title}</span>
                             {item.badge && (
@@ -207,7 +207,7 @@ export default function MobileMenu({ items, otherPath, otherLabel }: Props) {
                     <a
                       href={otherPath}
                       onClick={() => setOpen(false)}
-                      className="inline-flex justify-start w-full items-center rounded-2xl px-4 py-3 text-sm font-medium text-slate-900 transition hover:bg-slate-100 dark:text-slate-100 dark:hover:bg-slate-900"
+                      className="inline-flex justify-start w-full items-center rounded-2xl px-4 py-3 text-sm font-medium text-slate-900 transition hover:bg-slate-100"
                     >
                       {otherLabel}
                     </a>
