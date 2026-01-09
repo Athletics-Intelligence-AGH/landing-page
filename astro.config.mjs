@@ -6,8 +6,10 @@ import icon from "astro-icon";
 
 import netlify from "@astrojs/netlify";
 
+import react from "@astrojs/react";
+
 export default defineConfig({
-  integrations: [tailwind(), mdx(), sitemap(), icon()],
+  integrations: [tailwind(), mdx(), sitemap(), icon(), react()],
 
   i18n: {
     defaultLocale: "en",
