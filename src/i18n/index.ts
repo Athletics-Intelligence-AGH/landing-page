@@ -13,6 +13,7 @@ const dict = {
     joinButton: 'Fill up form',
     navAbout: 'About Us',
     navContact: 'Contact',
+    navNews: 'News',
     langEN: '🇬🇧',
     langPL: '🇵🇱',
     aboutHeader: 'Empowering the sport with AI.',
@@ -29,7 +30,12 @@ const dict = {
     presidentTitle: 'President',
     vicePresidentTitle: 'Vice President',
     supervisorTitle: 'Supervisor SKN',
-    academicSupervisorTitle: 'Academic Supervisor SKN'
+    academicSupervisorTitle: 'Academic Supervisor SKN',
+    newsHeader: 'News',
+    newsSubHeader: 'Get to know what we are working on right now.',
+    newsNoNews: 'There is no news yet, but we are working intensively on something shiny.',
+    newsReadMoreButton: 'Read more',
+    newsBackToList: 'Back'
   },
   pl: {
     heroHeader: 'Wdrażamy AI w Sporcie',
@@ -40,6 +46,7 @@ const dict = {
     joinButton: 'Wypełnij formularz',
     navAbout: 'O nas',
     navContact: 'Kontakt',
+    navNews: 'Aktualności',
     langEN: '🇬🇧',
     langPL: '🇵🇱',
     aboutHeader: 'O nas',
@@ -56,7 +63,12 @@ const dict = {
     presidentTitle: 'Prezes',
     vicePresidentTitle: 'Wiceprezes',
     supervisorTitle: 'Opiekun SKN',
-    academicSupervisorTitle: 'Opiekun naukowy SKN'
+    academicSupervisorTitle: 'Opiekun naukowy SKN',
+    newsHeader: 'Aktualności',
+    newsSubHeader: 'Dowiedz się co u nas aktualnie słychać.',
+    newsNoNews: 'Jeszcze nie ma nic nowego, ale instensywnie pracujemy nad czymś wyjątkowym.',
+    newsReadMoreButton: 'Czytaj więcej',
+    newsBackToList: 'Wróć'
   }
 } satisfies Record<Lang, Record<string, string>>;
 

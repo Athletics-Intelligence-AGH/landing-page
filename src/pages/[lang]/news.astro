@@ -1,0 +1,34 @@
+---
+import { defaultLang, isLang, type Lang, languages, t } from '../../i18n';
+import Container from '@components/container.astro';
+import Layout from '@layouts/Layout.astro';
+import Sectionhead from '@components/sectionhead.astro';
+import { getCollection } from 'astro:content';
+import { canBeDisplayed } from '../../utils.ts';
+import Newslist from '@components/newslist.astro';
+
+export function getStaticPaths() {
+  return languages.map((lang) => ({
+    params: { lang },
+    props: { lang }
+  }));
+}
+
+const langParam = Astro.params.lang ?? defaultLang;
+const lang: Lang = isLang(langParam) ? langParam : defaultLang;
+
+const newsList = await getCollection('news', ({ data }) => {
+  return canBeDisplayed(data.draft, data.publishDate);
+});
+---
+
+<Layout lang={lang}>
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">{t(lang, 'newsHeader')}</Fragment>
+      <Fragment slot="desc">{t(lang, 'newsSubHeader')}</Fragment>
+    </Sectionhead>
+
+    <Newslist lang={lang} newsList={newsList.map((news) => news.data)} />
+  </Container>
+</Layout>
