@@ -6,6 +6,7 @@ import Container from '@components/container.astro';
 import Sectionhead from '@components/sectionhead.astro';
 import { defaultLang, isLang, type Lang, languages, t } from '../../i18n';
 import type { TeamMemberData } from '../../content/config.ts';
+import { canBeDisplayed } from '../../utils.ts';
 
 export function getStaticPaths() {
   return languages.map((lang) => ({
@@ -26,10 +27,6 @@ const byOrderThenName = (a: { data: TeamMemberData }, b: { data: TeamMemberData 
   }
 
   return a.data.name.localeCompare(b.data.name);
-};
-
-const canBeDisplayed = (draft: boolean, publishDate: Date): boolean => {
-  return !draft && publishDate < new Date();
 };
 
 const supervisorMembers = (
@@ -57,7 +54,7 @@ const managementMembers = (
         {t(lang, 'aboutLongerDescription')}
       </p>
     </div>
-    <h2 class="text-2xl mt-8 max-w-4xl mx-auto">{t(lang, "supervisorsTeamGroup")}</h2>
+    <h2 class="text-2xl mt-8 max-w-4xl mx-auto">{t(lang, 'supervisorsTeamGroup')}</h2>
     <div class="grid md:grid-cols-3 gap-10 mx-auto max-w-4xl mt-12">
       {
         supervisorMembers.map(({ data: { name, avatar, title } }) => (
