@@ -1,7 +1,7 @@
 ---
 import Container from '@components/container.astro';
 import Dropdown from './dropdown.astro';
-import { Astronav, MenuItems, MenuIcon } from 'astro-navbar';
+import MobileMenu from '@components//mobile-menu.tsx';
 
 import { t, type Lang } from '../../i18n';
 
@@ -22,71 +22,62 @@ const menuitems: MenuItem[] = [
 
 const other: Lang = lang === 'en' ? 'pl' : 'en';
 const otherPath = Astro.url.pathname.replace(/^\/(en|pl)(\/|$)/, `/${other}$2`);
+const otherLabel = other === 'en' ? t(lang, 'langEN') : t(lang, 'langPL');
 const homeHref = `/${lang}/`;
 ---
 
-<div class="sticky top-0 z-50">
+<div class="sticky top-0 z-50 [--nav-h:64px]">
   <div
-    class="bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/50 dark:bg-slate-950/70 dark:supports-[backdrop-filter]:bg-slate-950/50 border-b border-slate-200/70 dark:border-slate-800/70"
+    class="border-b border-slate-200/70 bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/50 dark:border-slate-800/70 dark:bg-slate-950/70 dark:supports-[backdrop-filter]:bg-slate-950/50"
   >
     <Container>
-      <header class="flex flex-col justify-between gap-3 py-4 lg:flex-row lg:items-center lg:gap-0">
-        <Astronav>
-          <div class="flex w-full items-center justify-between lg:w-auto">
-            <a href={homeHref} class="text-lg font-medium tracking-tight text-slate-900 dark:text-slate-100">
-              AGH <span class="font-bold">Athletics</span>{' '}
-              <span class="text-slate-500 dark:text-slate-400">Intelligence</span>
-            </a>
+      <header class="flex h-16 items-center justify-between">
+        <a href={homeHref} class="text-lg font-medium tracking-tight text-slate-900 dark:text-slate-100">
+          AGH <span class="font-bold">Athletics</span>{' '}
+          <span class="text-slate-500 dark:text-slate-400">Intelligence</span>
+        </a>
 
-            <div class="block lg:hidden">
-              <MenuIcon class="h-5 w-5 text-slate-900 dark:text-slate-100" />
-            </div>
-          </div>
+        <nav class="hidden lg:flex lg:items-center lg:gap-2">
+          <ul class="flex items-center gap-1">
+            {
+              menuitems.map((item, index) => (
+                <>
+                  {item.children && (
+                    <Dropdown title={item.title} children={item.children} lastItem={index === menuitems.length - 1} />
+                  )}
 
-          <MenuItems class="hidden w-full lg:flex lg:w-auto lg:items-center lg:gap-2">
-            <ul class="mt-2 flex flex-col gap-1 lg:mt-0 lg:flex-row lg:items-center lg:gap-1">
-              {
-                menuitems.map((item, index) => (
-                  <>
-                    {item.children && (
-                      <Dropdown title={item.title} children={item.children} lastItem={index === menuitems.length - 1} />
-                    )}
+                  {!item.children && (
+                    <li>
+                      <a
+                        href={item.path}
+                        class="inline-flex items-center rounded-xl px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100 hover:text-slate-900 dark:text-slate-200 dark:hover:bg-slate-900 dark:hover:text-white"
+                      >
+                        <span>{item.title}</span>
 
-                    {!item.children && (
-                      <li>
-                        <a
-                          href={item.path}
-                          class="inline-flex items-center rounded-xl px-3 py-2 text-sm font-medium text-slate-700 transition
-                               hover:bg-slate-100 hover:text-slate-900
-                               dark:text-slate-200 dark:hover:bg-slate-900 dark:hover:text-white"
-                        >
-                          <span>{item.title}</span>
+                        {item.badge && (
+                          <span class="ml-2 rounded-full bg-indigo-600 px-2 py-0.5 text-[10px] font-semibold uppercase text-white">
+                            New
+                          </span>
+                        )}
+                      </a>
+                    </li>
+                  )}
+                </>
+              ))
+            }
+          </ul>
 
-                          {item.badge && (
-                            <span class="ml-2 rounded-full bg-indigo-600 px-2 py-0.5 text-[10px] font-semibold uppercase text-white">
-                              New
-                            </span>
-                          )}
-                        </a>
-                      </li>
-                    )}
-                  </>
-                ))
-              }
-            </ul>
+          <a
+            href={otherPath}
+            class="inline-flex items-center rounded-xl px-3 py-2 text-sm font-medium text-slate-700 transitionhover:bg-slate-100 hover:text-slate-900 dark:text-slate-200 dark:hover:bg-slate-900 dark:hover:text-white"
+          >
+            {otherLabel}
+          </a>
+        </nav>
 
-            <div class="mt-2 flex items-center lg:mt-0">
-              <a
-                href={otherPath}
-                class="inline-flex items-center rounded-xl px-3 py-2 text-sm font-medium text-slate-700 transition
-                       hover:bg-slate-100 hover:text-slate-900
-                       dark:text-slate-200 dark:hover:bg-slate-900 dark:hover:text-white"
-              >
-                {other === 'en' ? t(lang, 'langEN') : t(lang, 'langPL')}
-              </a>
-            </div>
-          </MenuItems>
-        </Astronav>
+        <div class="lg:hidden">
+          <MobileMenu client:load items={menuitems} otherPath={otherPath} otherLabel={otherLabel} />
+        </div>
       </header>
     </Container>
   </div>
