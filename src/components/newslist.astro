@@ -1,0 +1,17 @@
+---
+import type { NewsData } from '../content/config.ts';
+import Nonews from '@components/nonews.astro';
+import Newscard from '@components/newscard.astro';
+import type { Lang } from '../i18n';
+
+interface Props {
+  newsList: NewsData[];
+  lang: Lang;
+}
+
+const { newsList, lang } = Astro.props;
+---
+
+<div class="flex flex-col max-w-3xl mx-auto mt-8">
+  {!newsList.length ? <Nonews lang={lang} /> : newsList.map((news) => <Newscard lang={lang} news={news} />)}
+</div>

@@ -1,0 +1,86 @@
+---
+import type { NewsData } from '../content/config.ts';
+import { Image } from 'astro:assets';
+import { type Lang, t } from '../i18n';
+
+interface Props {
+  news: NewsData;
+  lang: Lang;
+}
+
+const {
+  news: { title, shortDescription, slug, publishDate, image },
+  lang
+} = Astro.props;
+
+const date = publishDate
+  ? new Date(publishDate).toLocaleDateString(lang === 'pl' ? 'pl-PL' : 'en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: '2-digit'
+    })
+  : null;
+---
+
+<section class="h-full">
+  <article
+    class="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition
+           hover:-translate-y-0.5 hover:shadow-md dark:border-slate-800 dark:bg-slate-950"
+  >
+    {
+      date && (
+        <time
+          datetime={new Date(publishDate).toISOString()}
+          class="absolute right-3 top-3 z-20 rounded-full border border-slate-200 bg-white/80 px-2.5 py-1 text-[11px] font-medium text-slate-700
+               shadow-sm backdrop-blur transition
+               dark:border-slate-800 dark:bg-slate-950/70 dark:text-slate-200"
+        >
+          {date}
+        </time>
+      )
+    }
+
+    {
+      image && (
+        <div class="relative">
+          <img
+            src={image.src}
+            alt={image.alt}
+            loading="lazy"
+            class="h-44 w-full object-cover transition duration-300 group-hover:scale-[1.02]"
+          />
+          <div
+            class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/10 via-black/0 to-black/0
+                 dark:from-black/25"
+            aria-hidden="true"
+          />
+        </div>
+      )
+    }
+
+    <div class="flex flex-1 flex-col gap-3 p-6">
+      <h3
+        class="line-clamp-2 text-lg font-semibold tracking-tight text-slate-900
+               group-hover:text-slate-950 dark:text-slate-100"
+      >
+        {title}
+      </h3>
+
+      <p class="line-clamp-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
+        {shortDescription}
+      </p>
+
+      <div class="mt-auto pt-2">
+        <a
+          href={`/${lang}/news/${slug}`}
+          class="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium text-slate-900 transition
+                 hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2
+                 dark:text-slate-100 dark:hover:bg-slate-900 dark:focus-visible:ring-slate-600 dark:focus-visible:ring-offset-slate-950"
+        >
+          {t(lang, 'newsReadMoreButton')}
+          <span class="transition-transform group-hover:translate-x-0.5" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </article>
+</section>

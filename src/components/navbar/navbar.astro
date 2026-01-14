@@ -1,0 +1,82 @@
+---
+import Container from '@components/container.astro';
+import Dropdown from './dropdown.astro';
+import MobileMenu from '@components//mobile-menu.tsx';
+
+import { t, type Lang } from '../../i18n';
+
+const { lang } = Astro.props as { lang: Lang };
+
+interface MenuItem {
+  title: string;
+  path: string;
+  badge?: boolean;
+  children?: MenuItem[];
+}
+
+const menuitems: MenuItem[] = [
+  { title: t(lang, 'navAbout'), path: `/${lang}/about` },
+  { title: t(lang, 'navNews'), path: `/${lang}/news` },
+  { title: t(lang, 'navContact'), path: `/${lang}/contact` }
+];
+
+const other: Lang = lang === 'en' ? 'pl' : 'en';
+const otherPath = Astro.url.pathname.replace(/^\/(en|pl)(\/|$)/, `/${other}$2`);
+const otherLabel = other === 'en' ? t(lang, 'langEN') : t(lang, 'langPL');
+const homeHref = `/${lang}/`;
+---
+
+<div class="sticky top-0 z-50 [--nav-h:64px]">
+  <div class="border-b border-slate-200/70 bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/50">
+    <Container>
+      <header class="flex h-16 items-center justify-between">
+        <a href={homeHref} class="text-lg font-medium tracking-tight text-slate-900">
+          AGH <span class="font-bold">Athletics</span>{' '}
+          <span class="text-slate-500 text-slate-400">Intelligence</span>
+        </a>
+
+        <nav class="hidden lg:flex lg:items-center lg:gap-2">
+          <ul class="flex items-center gap-1">
+            {
+              menuitems.map((item, index) => (
+                <>
+                  {item.children && (
+                    <Dropdown title={item.title} children={item.children} lastItem={index === menuitems.length - 1} />
+                  )}
+
+                  {!item.children && (
+                    <li>
+                      <a
+                        href={item.path}
+                        class="inline-flex items-center rounded-xl px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100 hover:text-slate-900"
+                      >
+                        <span>{item.title}</span>
+
+                        {item.badge && (
+                          <span class="ml-2 rounded-full bg-indigo-600 px-2 py-0.5 text-[10px] font-semibold uppercase text-white">
+                            New
+                          </span>
+                        )}
+                      </a>
+                    </li>
+                  )}
+                </>
+              ))
+            }
+          </ul>
+
+          <a
+            href={otherPath}
+            class="inline-flex items-center rounded-xl px-3 py-2 text-sm font-medium text-slate-700 transitionhover:bg-slate-100 hover:text-slate-900"
+          >
+            {otherLabel}
+          </a>
+        </nav>
+
+        <div class="lg:hidden">
+          <MobileMenu client:load items={menuitems} otherPath={otherPath} otherLabel={otherLabel} />
+        </div>
+      </header>
+    </Container>
+  </div>
+</div>

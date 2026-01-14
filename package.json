@@ -1,0 +1,43 @@
+{
+  "name": "agh-athletics-inelligence-landing-page",
+  "type": "module",
+  "version": "2.2.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "prettier:fix": "prettier --write \"src/**/*.{ts,tsx,js,scss,md,astro}\"",
+    "prettier:check": "prettier --check \"src/**/*.{ts,tsx,js,scss,md,astro}\""
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.3.13",
+    "@astrojs/node": "^9.5.1",
+    "@astrojs/react": "^4.4.2",
+    "@astrojs/sitemap": "^3.1.5",
+    "@astrojs/tailwind": "^5.1.0",
+    "@fontsource-variable/bricolage-grotesque": "^5.0.6",
+    "@fontsource-variable/inter": "^5.0.18",
+    "@iconify-json/bx": "^1.1.10",
+    "@iconify-json/simple-icons": "^1.1.102",
+    "@iconify-json/uil": "^1.1.8",
+    "@tailwindcss/typography": "^0.5.13",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "astro": "^5.15.9",
+    "astro-icon": "^1.1.0",
+    "astro-navbar": "^2.3.2",
+    "astro-seo": "^0.8.3",
+    "motion": "^12.25.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "sharp": "^0.33.4",
+    "tailwindcss": "^3.4.3"
+  },
+  "devDependencies": {
+    "prettier": "^3.7.4",
+    "prettier-plugin-astro": "^0.14.1"
+  }
+}

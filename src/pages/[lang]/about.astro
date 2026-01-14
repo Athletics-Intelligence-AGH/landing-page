@@ -1,0 +1,106 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import Layout from '@layouts/Layout.astro';
+import Container from '@components/container.astro';
+import Sectionhead from '@components/sectionhead.astro';
+import { defaultLang, isLang, type Lang, languages, t } from '../../i18n';
+import type { TeamMemberData } from '../../content/config.ts';
+import { canBeDisplayed } from '../../utils.ts';
+
+export function getStaticPaths() {
+  return languages.map((lang) => ({
+    params: { lang },
+    props: { lang }
+  }));
+}
+
+const langParam = Astro.params.lang ?? defaultLang;
+const lang: Lang = isLang(langParam) ? langParam : defaultLang;
+
+const byOrderThenName = (a: { data: TeamMemberData }, b: { data: TeamMemberData }) => {
+  const ao = a.data.order ?? 9999;
+  const bo = b.data.order ?? 9999;
+
+  if (ao !== bo) {
+    return ao - bo;
+  }
+
+  return a.data.name.localeCompare(b.data.name);
+};
+
+const supervisorMembers = (
+  await getCollection('supervisors', ({ data }) => {
+    return canBeDisplayed(data.draft, data.publishDate);
+  })
+).sort(byOrderThenName);
+
+const managementMembers = (
+  await getCollection('management', ({ data }) => {
+    return canBeDisplayed(data.draft, data.publishDate);
+  })
+).sort(byOrderThenName);
+---
+
+<Layout lang={lang}>
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">{t(lang, 'aboutHeader')}</Fragment>
+      <Fragment slot="desc">{t(lang, 'aboutSubHeader')}</Fragment>
+    </Sectionhead>
+
+    <div class="flex flex-col gap-3 mx-auto max-w-4xl mt-16">
+      <p class="text-lg leading-relaxed text-slate-500">
+        {t(lang, 'aboutLongerDescription')}
+      </p>
+    </div>
+    <h2 class="text-2xl mt-8 max-w-4xl mx-auto">{t(lang, 'supervisorsTeamGroup')}</h2>
+    <div class="grid md:grid-cols-3 gap-10 mx-auto max-w-4xl mt-12">
+      {
+        supervisorMembers.map(({ data: { name, avatar, title } }) => (
+          <div class="group">
+            <div class="w-full aspect-square">
+              <Image
+                src={avatar.src}
+                alt={avatar.alt}
+                sizes="(max-width: 800px) 100vw, 400px"
+                width={400}
+                height={400}
+                class="w-full rounded-md rounded transition group-hover:-translate-y-1 group-hover:shadow-xl bg-white object-cover object-center aspect-square"
+              />
+            </div>
+
+            <div class="mt-4 text-center">
+              <h2 class="text-lg text-gray-800">{name}</h2>
+              <h3 class="text-sm text-slate-500">{t(lang, title)}</h3>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+    <h2 class="text-2xl mt-8 max-w-4xl mx-auto">{t(lang, 'managementTeamGroup')}</h2>
+    <div class="grid md:grid-cols-3 gap-10 mx-auto max-w-4xl mt-12">
+      {
+        managementMembers.map(({ data: { avatar, name, title } }) => (
+          <div class="group">
+            <div class="w-full aspect-square">
+              <Image
+                src={avatar.src}
+                alt={avatar.alt}
+                sizes="(max-width: 800px) 100vw, 400px"
+                width={400}
+                height={400}
+                class="w-full rounded-md rounded transition group-hover:-translate-y-1 group-hover:shadow-xl bg-white object-cover object-center aspect-square"
+              />
+            </div>
+
+            <div class="mt-4 text-center">
+              <h2 class="text-lg text-gray-800">{name}</h2>
+              <h3 class="text-sm text-slate-500">{t(lang, title)}</h3>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </Container>
+</Layout>
