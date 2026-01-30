@@ -1,5 +1,5 @@
 services:
   athletics-intelligence:
-    image: skn-athletics-intelligence
+    image: gitlab.dev.cri.agh.edu.pl:5050/internal/skn-ai-agh/skn-ai-agh/licencje-production:latest
     ports:
       - "80:4321"
