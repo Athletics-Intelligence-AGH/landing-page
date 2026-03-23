@@ -34,7 +34,7 @@ export type NewsData = z.infer<ReturnType<typeof newsSchema>>;
 const managementCollection = defineCollection({
   loader: glob({
     pattern: '**/*.{md,mdx}',
-    base: new URL('./team/management/', import.meta.url)
+    base: new URL('./content/team/management/', import.meta.url)
   }),
   schema: teamMemberSchema
 });
@@ -42,7 +42,7 @@ const managementCollection = defineCollection({
 const supervisorsCollection = defineCollection({
   loader: glob({
     pattern: '**/*.{md,mdx}',
-    base: new URL('./team/supervisors/', import.meta.url)
+    base: new URL('./content/team/supervisors/', import.meta.url)
   }),
   schema: teamMemberSchema
 });
@@ -50,7 +50,7 @@ const supervisorsCollection = defineCollection({
 const newsCollection = defineCollection({
   loader: glob({
     pattern: '**/*.{md,mdx}',
-    base: new URL('./news/', import.meta.url)
+    base: new URL('./content/news/', import.meta.url)
   }),
   schema: newsSchema
 });
