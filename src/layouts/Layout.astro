@@ -3,6 +3,7 @@ import Footer from '@components/footer.astro';
 import Navbar from '@components/navbar/navbar.astro';
 import '@fontsource-variable/inter/index.css';
 import '@fontsource-variable/bricolage-grotesque';
+import Analytics from '@vercel/analytics/astro'
 import '../styles/global.css';
 import { type Lang } from '../i18n';
 
@@ -27,6 +28,7 @@ const { lang } = Astro.props;
     <Navbar lang={lang} />
     <slot />
     <Footer lang={lang} />
+    <Analytics />
     <style is:global>
       img {
         content-visibility: auto;
