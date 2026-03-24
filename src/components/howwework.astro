@@ -1,0 +1,71 @@
+---
+import { t, type Lang } from '../i18n';
+
+const { lang } = Astro.props as { lang: Lang };
+
+const pillars = [
+  {
+    number: '01',
+    title: 'Interdisciplinary teams',
+    desc: 'Engineers, analysts, designers, and sport scientists working on the same problems.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="w-5 h-5"><circle cx="8" cy="7" r="3"/><circle cx="16" cy="7" r="3"/><path d="M2 21c0-4 2.7-6 6-6h8c3.3 0 6 2 6 6"/></svg>`
+  },
+  {
+    number: '02',
+    title: 'Fast prototyping',
+    desc: 'Ideas become testable prototypes in weeks, not months. We ship to learn.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="w-5 h-5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>`
+  },
+  {
+    number: '03',
+    title: 'Data-driven decisions',
+    desc: 'Every hypothesis is grounded in real sport data. We measure what matters.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="w-5 h-5"><path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="7"/><rect x="12" y="8" width="3" height="11"/><rect x="17" y="5" width="3" height="14"/></svg>`
+  },
+  {
+    number: '04',
+    title: 'Sport + AI domain',
+    desc: 'Deep sport knowledge paired with applied AI expertise — both sides matter.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="w-5 h-5"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg>`
+  }
+];
+---
+
+<section class="py-20 border-t border-white/[0.07]">
+  <div class="grid lg:grid-cols-2 gap-12 items-start">
+    <!-- Left: headline -->
+    <div>
+      <p class="text-xs font-semibold uppercase tracking-widest text-brand-400 mb-3">
+        {t(lang, 'howWeWorkHeader')}
+      </p>
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-white">
+        {t(lang, 'howWeWorkSubHeader')}
+      </h2>
+      <p class="mt-4 text-slate-500 leading-relaxed max-w-sm">
+        We operate as a cross-disciplinary applied research lab inside the university — combining academic rigour with
+        startup speed.
+      </p>
+    </div>
+
+    <!-- Right: pillar cards -->
+    <div class="grid sm:grid-cols-2 gap-4">
+      {
+        pillars.map((p) => (
+          <div
+            class="rounded-2xl border border-white/[0.07] p-5 transition hover:border-white/[0.13]"
+            style="background: linear-gradient(135deg, #0F1728 0%, #0A0F1C 100%);"
+          >
+            <div class="flex items-center gap-2.5 mb-3">
+              <div class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-brand-500/10 text-brand-400">
+                <Fragment set:html={p.icon} />
+              </div>
+              <span class="text-xs font-bold text-dark-400 font-mono tracking-wider">{p.number}</span>
+            </div>
+            <h3 class="text-sm font-semibold text-white mb-1.5">{p.title}</h3>
+            <p class="text-xs text-slate-500 leading-relaxed">{p.desc}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

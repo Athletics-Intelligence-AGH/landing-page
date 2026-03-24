@@ -1,3 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #070B14;
+    color: #f1f5f9;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Subtle dark scrollbar */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: #070B14; }
+  ::-webkit-scrollbar-thumb { background: #243148; border-radius: 9999px; }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+
+  /* Glass-dark card surface */
+  .card-dark {
+    background: rgba(15, 23, 40, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+  }
+  .card-dark:hover {
+    border-color: rgba(255, 255, 255, 0.13);
+  }
+
+  /* Green ambient glow */
+  .glow-green {
+    box-shadow: 0 0 40px rgba(132, 204, 22, 0.15), 0 0 80px rgba(132, 204, 22, 0.05);
+  }
+}

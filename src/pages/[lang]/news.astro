@@ -2,7 +2,7 @@
 import { defaultLang, isLang, type Lang, languages, t } from '../../i18n';
 import Container from '@components/container.astro';
 import Layout from '@layouts/Layout.astro';
-import Sectionhead from '@components/sectionhead.astro';
+import Cta from '@components/cta.astro';
 import { getCollection } from 'astro:content';
 import { canBeDisplayed } from '../../utils.ts';
 import Newslist from '@components/newslist.astro';
@@ -24,11 +24,17 @@ const newsList = await getCollection('news', ({ data }) => {
 
 <Layout lang={lang}>
   <Container>
-    <Sectionhead>
-      <Fragment slot="title">{t(lang, 'newsHeader')}</Fragment>
-      <Fragment slot="desc">{t(lang, 'newsSubHeader')}</Fragment>
-    </Sectionhead>
+    <div class="mt-16 max-w-2xl">
+      <p class="text-xs font-semibold uppercase tracking-widest text-brand-400 mb-3">
+        {t(lang, 'navProjects')}
+      </p>
+      <h1 class="text-4xl lg:text-5xl font-bold tracking-tight text-white">
+        {t(lang, 'newsSubHeader')}
+      </h1>
+    </div>
 
     <Newslist lang={lang} newsList={newsList.map((news) => news.data)} />
+
+    <Cta lang={lang} />
   </Container>
 </Layout>

@@ -2,6 +2,9 @@
 import Container from '@components/container.astro';
 import Cta from '@components/cta.astro';
 import Hero from '@components/hero.astro';
+import WhatWeBuild from '@components/whatwebuild.astro';
+import ProjectsSection from '@components/projects-section.astro';
+import HowWeWork from '@components/howwework.astro';
 import Layout from '@layouts/Layout.astro';
 import { defaultLang, isLang, type Lang, languages } from '../../i18n';
 
@@ -17,8 +20,14 @@ const lang: Lang = isLang(langParam) ? langParam : defaultLang;
 ---
 
 <Layout lang={lang}>
+  <!-- Hero is full-viewport, lives outside the Container -->
+  <Hero lang={lang} />
+
+  <!-- Below-fold sections inside Container -->
   <Container>
-    <Hero lang={lang} />
+    <WhatWeBuild lang={lang} />
+    <ProjectsSection lang={lang} />
+    <HowWeWork lang={lang} />
     <Cta lang={lang} />
   </Container>
 </Layout>

@@ -1,8 +1,6 @@
 ---
 import Container from '@components/container.astro';
-import Sectionhead from '@components/sectionhead.astro';
 import Layout from '@layouts/Layout.astro';
-import { Icon } from 'astro-icon/components';
 import { defaultLang, isLang, type Lang, languages, t } from '../../i18n';
 
 export function getStaticPaths() {
@@ -14,29 +12,104 @@ export function getStaticPaths() {
 
 const langParam = Astro.params.lang ?? defaultLang;
 const lang: Lang = isLang(langParam) ? langParam : defaultLang;
+
+const contactItems = [
+  {
+    label: t(lang, 'contactEmailLabel'),
+    value: 'athletic@agh.edu.pl',
+    href: 'mailto:athletic@agh.edu.pl',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="w-5 h-5"><path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z"/><path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z"/></svg>`
+  },
+  {
+    label: t(lang, 'contactGithubLabel'),
+    value: 'Athletics-Intelligence-AGH',
+    href: 'https://github.com/Athletics-Intelligence-AGH',
+    external: true,
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="w-5 h-5"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>`
+  }
+];
 ---
 
 <Layout lang={lang}>
   <Container>
-    <Sectionhead>
-      <Fragment slot="title">{t(lang, 'contactHeader')}</Fragment>
-      <Fragment slot="desc">{t(lang, 'contactSubHeader')}</Fragment>
-    </Sectionhead>
+    <!-- Page header -->
+    <div class="mt-16 max-w-2xl">
+      <p class="text-xs font-semibold uppercase tracking-widest text-brand-400 mb-3">
+        {t(lang, 'contactHeader')}
+      </p>
+      <h1 class="text-4xl lg:text-5xl font-bold tracking-tight text-white">
+        {t(lang, 'contactSubHeader')}
+      </h1>
+    </div>
 
-    <div class="grid md:grid-cols-1 gap-10 mx-auto max-w-4xl mt-16">
+    <div class="mt-14 grid md:grid-cols-2 gap-10 max-w-4xl">
+      <!-- Info block -->
       <div>
-        <h2 class="font-medium text-2xl text-gray-800">
+        <h2 class="text-lg font-semibold text-white mb-2">
           {t(lang, 'contactFormHeader')}
         </h2>
-        <p class="text-lg leading-relaxed text-slate-500 mt-3">
+        <p class="text-sm text-slate-400 leading-relaxed mb-8">
           {t(lang, 'contactFormDescription')}
         </p>
-        <div class="mt-5">
-          <div class="flex items-center mt-2 space-x-2 text-gray-600">
-            <Icon class="text-gray-400 w-4 h-4" name="uil:envelope" /><a href="mailto:hello@astroshipstarter.com"
-              >athletic@agh.edu.pl</a
+
+        <div class="space-y-4">
+          {
+            contactItems.map((item) => (
+              <div class="flex items-center gap-4 rounded-xl border border-white/[0.07] bg-white/[0.03] px-4 py-3.5 transition hover:border-brand-500/30 hover:bg-white/[0.05]">
+                <span class="shrink-0 text-slate-500">
+                  <Fragment set:html={item.icon} />
+                </span>
+                <div class="min-w-0">
+                  <p class="text-[11px] font-semibold uppercase tracking-widest text-slate-500 mb-0.5">{item.label}</p>
+                  <a
+                    href={item.href}
+                    {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                    class="text-sm font-medium text-slate-200 transition hover:text-brand-400 truncate block"
+                  >
+                    {item.value}
+                  </a>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Location / additional info -->
+      <div
+        class="rounded-2xl border border-white/[0.07] p-8"
+        style="background: linear-gradient(135deg, #0F1728 0%, #0A0F1C 100%);"
+      >
+        <p class="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-4">Location</p>
+        <p class="text-base font-semibold text-white leading-snug mb-1">AGH University of Science and Technology</p>
+        <p class="text-sm text-slate-400">
+          al. Mickiewicza 30<br />
+          30-059 Kraków, Poland
+        </p>
+
+        <div class="mt-8 pt-6 border-t border-white/[0.07]">
+          <p class="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-3">Interested in joining?</p>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">
+            We are always looking for curious builders — engineers, analysts, designers, and sport scientists.
+          </p>
+          <a
+            href="#"
+            class="inline-flex items-center gap-2 rounded-full bg-brand-500 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-400 hover:-translate-y-px hover:shadow-xl hover:shadow-brand-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:ring-offset-dark"
+          >
+            {t(lang, 'joinButton')}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              class="w-4 h-4"
+              aria-hidden="true"
             >
-          </div>
+              <path
+                fill-rule="evenodd"
+                d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </a>
         </div>
       </div>
     </div>

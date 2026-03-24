@@ -18,10 +18,7 @@ const listVariants: Variants = {
   hidden: { opacity: 1 },
   show: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.06,
-      delayChildren: 0.06
-    }
+    transition: { staggerChildren: 0.06, delayChildren: 0.06 }
   }
 };
 
@@ -40,34 +37,21 @@ export default function MobileMenu({ items, otherPath, otherLabel }: Props) {
   const panelId = useId();
 
   useEffect(() => {
-    if (!open) {
-      return;
-    }
-
-    const previousOverflowValue = document.documentElement.style.overflow;
+    if (!open) return;
+    const prev = document.documentElement.style.overflow;
     document.documentElement.style.overflow = 'hidden';
-
     return () => {
-      document.documentElement.style.overflow = previousOverflowValue;
+      document.documentElement.style.overflow = prev;
     };
   }, [open]);
 
   useEffect(() => {
-    if (!open) {
-      return;
-    }
-
+    if (!open) return;
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        setOpen(false);
-      }
+      if (e.key === 'Escape') setOpen(false);
     };
-
     window.addEventListener('keydown', onKeyDown);
-
-    return () => {
-      return window.removeEventListener('keydown', onKeyDown);
-    };
+    return () => window.removeEventListener('keydown', onKeyDown);
   }, [open]);
 
   const flatItems = useMemo(() => items ?? [], [items]);
@@ -76,7 +60,7 @@ export default function MobileMenu({ items, otherPath, otherLabel }: Props) {
     <>
       <button
         type="button"
-        className="inline-flex items-center justify-center rounded-xl p-2 transition hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
+        className="inline-flex items-center justify-center rounded-xl p-2 text-slate-400 transition hover:bg-white/[0.07] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/50"
         aria-haspopup="dialog"
         aria-expanded={open}
         aria-controls={panelId}
@@ -88,7 +72,7 @@ export default function MobileMenu({ items, otherPath, otherLabel }: Props) {
             <motion.svg
               key="hamburger"
               viewBox="0 0 24 24"
-              className="h-5 w-5 text-slate-900"
+              className="h-5 w-5"
               aria-hidden="true"
               initial={{ opacity: 0, x: -6 }}
               animate={{ opacity: 1, x: 0 }}
@@ -101,7 +85,7 @@ export default function MobileMenu({ items, otherPath, otherLabel }: Props) {
             <motion.svg
               key="close"
               viewBox="0 0 24 24"
-              className="h-5 w-5 text-slate-900"
+              className="h-5 w-5"
               aria-hidden="true"
               initial={{ opacity: 0, x: -6 }}
               animate={{ opacity: 1, x: 0 }}
@@ -126,9 +110,10 @@ export default function MobileMenu({ items, otherPath, otherLabel }: Props) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
+            {/* Backdrop */}
             <motion.button
               type="button"
-              className="absolute inset-0 w-full bg-black/25 backdrop-blur-sm"
+              className="absolute inset-0 w-full bg-black/60 backdrop-blur-sm"
               onClick={() => setOpen(false)}
               aria-label="Close menu"
               initial={{ opacity: 0 }}
@@ -136,12 +121,13 @@ export default function MobileMenu({ items, otherPath, otherLabel }: Props) {
               exit={{ opacity: 0 }}
             />
 
+            {/* Panel */}
             <motion.div
               id={panelId}
               role="dialog"
               aria-modal="true"
               className="relative h-[calc(100dvh-var(--nav-h,64px))] w-full overflow-y-auto
-                         bg-white/90 backdrop-blur-xl"
+                         bg-dark-100/95 backdrop-blur-xl border-t border-white/[0.07]"
               initial={{ y: -10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -10, opacity: 0 }}
@@ -154,25 +140,24 @@ export default function MobileMenu({ items, otherPath, otherLabel }: Props) {
                     initial="hidden"
                     animate="show"
                     exit="hidden"
-                    className="space-y-1.5"
+                    className="space-y-1"
                   >
                     {flatItems.map((item) => {
                       if (item.children?.length) {
                         return (
                           <motion.li key={item.title} variants={itemVariants}>
                             <details className="group rounded-2xl">
-                              <summary className="flex cursor-pointer list-none items-center justify-between rounded-2xl px-4 py-3 text-sm font-medium text-slate-900 transition hover:bg-slate-100">
+                              <summary className="flex cursor-pointer list-none items-center justify-between rounded-2xl px-4 py-3 text-sm font-medium text-slate-200 transition hover:bg-white/[0.07]">
                                 <span>{item.title}</span>
                                 <span className="text-slate-500 transition group-open:rotate-180">▾</span>
                               </summary>
-
                               <ul className="mt-1 space-y-1 pl-2">
                                 {item.children.map((c) => (
                                   <li key={c.path}>
                                     <a
                                       href={c.path}
                                       onClick={() => setOpen(false)}
-                                      className="block rounded-2xl px-4 py-2.5 text-sm text-slate-700 transition hover:bg-slate-100 hover:text-slate-90"
+                                      className="block rounded-2xl px-4 py-2.5 text-sm text-slate-400 transition hover:bg-white/[0.07] hover:text-white"
                                     >
                                       {c.title}
                                     </a>
@@ -189,11 +174,11 @@ export default function MobileMenu({ items, otherPath, otherLabel }: Props) {
                           <a
                             href={item.path}
                             onClick={() => setOpen(false)}
-                            className="flex items-center justify-between rounded-2xl px-4 py-3 text-sm font-medium text-slate-900 transition hover:bg-slate-100"
+                            className="flex items-center justify-between rounded-2xl px-4 py-3 text-sm font-medium text-slate-200 transition hover:bg-white/[0.07] hover:text-white"
                           >
                             <span>{item.title}</span>
                             {item.badge && (
-                              <span className="ml-3 rounded-full bg-indigo-600 px-2 py-0.5 text-[10px] font-semibold uppercase text-white">
+                              <span className="ml-3 rounded-full bg-brand-500 px-2 py-0.5 text-[10px] font-semibold uppercase text-white">
                                 New
                               </span>
                             )}
@@ -203,11 +188,16 @@ export default function MobileMenu({ items, otherPath, otherLabel }: Props) {
                     })}
                   </motion.ul>
 
-                  <motion.div variants={itemVariants} initial="hidden" animate="show" className="mt-6">
+                  <motion.div
+                    variants={itemVariants}
+                    initial="hidden"
+                    animate="show"
+                    className="mt-5 pt-4 border-t border-white/[0.07]"
+                  >
                     <a
                       href={otherPath}
                       onClick={() => setOpen(false)}
-                      className="inline-flex justify-start w-full items-center rounded-2xl px-4 py-3 text-sm font-medium text-slate-900 transition hover:bg-slate-100"
+                      className="inline-flex w-full items-center rounded-2xl px-4 py-3 text-sm font-medium text-slate-400 transition hover:bg-white/[0.07] hover:text-white"
                     >
                       {otherLabel}
                     </a>
