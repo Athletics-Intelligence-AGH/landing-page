@@ -23,6 +23,8 @@ const other: Lang = lang === 'en' ? 'pl' : 'en';
 const otherPath = Astro.url.pathname.replace(/^\/(en|pl)(\/|$)/, `/${other}$2`);
 const otherLabel = other === 'en' ? t(lang, 'langEN') : t(lang, 'langPL');
 const homeHref = `/${lang}/`;
+const menuOpenLabel = t(lang, 'menuOpen');
+const menuCloseLabel = t(lang, 'menuClose');
 ---
 
 <div class="sticky top-0 z-50 [--nav-h:64px]">
@@ -74,7 +76,7 @@ const homeHref = `/${lang}/`;
                         <span>{item.title}</span>
                         {item.badge && (
                           <span class="ml-2 rounded-full bg-brand-500 px-2 py-0.5 text-[10px] font-semibold uppercase text-white">
-                            New
+                            {t(lang, 'navBadgeNew')}
                           </span>
                         )}
                       </a>
@@ -97,7 +99,15 @@ const homeHref = `/${lang}/`;
 
         <!-- Mobile hamburger -->
         <div class="lg:hidden">
-          <MobileMenu client:load items={menuitems} otherPath={otherPath} otherLabel={otherLabel} />
+          <MobileMenu
+            client:load
+            items={menuitems}
+            otherPath={otherPath}
+            otherLabel={otherLabel}
+            openLabel={menuOpenLabel}
+            closeLabel={menuCloseLabel}
+            badgeNewLabel={t(lang, 'navBadgeNew')}
+          />
         </div>
       </header>
     </Container>

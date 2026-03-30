@@ -12,6 +12,9 @@ type Props = {
   items: MenuItem[];
   otherPath: string;
   otherLabel: string;
+  openLabel: string;
+  closeLabel: string;
+  badgeNewLabel: string;
 };
 
 const listVariants: Variants = {
@@ -32,7 +35,7 @@ const itemVariants: Variants = {
   exit: { opacity: 0, x: -12, transition: { duration: 0.12 } }
 };
 
-export default function MobileMenu({ items, otherPath, otherLabel }: Props) {
+export default function MobileMenu({ items, otherPath, otherLabel, openLabel, closeLabel, badgeNewLabel }: Props) {
   const [open, setOpen] = useState(false);
   const panelId = useId();
 
@@ -64,7 +67,7 @@ export default function MobileMenu({ items, otherPath, otherLabel }: Props) {
         aria-haspopup="dialog"
         aria-expanded={open}
         aria-controls={panelId}
-        aria-label={open ? 'Close menu' : 'Open menu'}
+        aria-label={open ? closeLabel : openLabel}
         onClick={() => setOpen((v) => !v)}
       >
         <AnimatePresence mode="wait" initial={false}>
@@ -115,7 +118,7 @@ export default function MobileMenu({ items, otherPath, otherLabel }: Props) {
               type="button"
               className="absolute inset-0 w-full bg-black/60 backdrop-blur-sm"
               onClick={() => setOpen(false)}
-              aria-label="Close menu"
+              aria-label={closeLabel}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -179,7 +182,7 @@ export default function MobileMenu({ items, otherPath, otherLabel }: Props) {
                             <span>{item.title}</span>
                             {item.badge && (
                               <span className="ml-3 rounded-full bg-brand-500 px-2 py-0.5 text-[10px] font-semibold uppercase text-white">
-                                New
+                                {badgeNewLabel}
                               </span>
                             )}
                           </a>

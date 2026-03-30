@@ -34,7 +34,7 @@ const { lang } = Astro.props as { lang: Lang };
       class="inline-flex items-center gap-2 rounded-full border border-brand-500/25 bg-brand-500/[0.08] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-400 mb-6"
     >
       <span class="block w-1.5 h-1.5 rounded-full bg-brand-400 animate-pulse" aria-hidden="true"></span>
-      Join the team
+      {t(lang, 'ctaEyebrow')}
     </div>
 
     <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-white text-balance">
@@ -68,7 +68,7 @@ const { lang } = Astro.props as { lang: Lang };
         href={`/${lang}/about`}
         class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-6 py-3 text-sm font-semibold text-white/70 transition hover:bg-white/[0.09] hover:text-white hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20 focus-visible:ring-offset-2 focus-visible:ring-offset-dark"
       >
-        Meet the team
+        {t(lang, 'ctaMeetTeam')}
       </a>
     </div>
   </div>
