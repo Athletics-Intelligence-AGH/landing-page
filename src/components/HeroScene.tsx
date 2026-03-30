@@ -325,9 +325,18 @@ interface HeroSceneProps {
   heroHeader: string;
   heroCtaPrimary: string;
   heroCtaSecondary: string;
+  heroBadge: string;
+  heroDragHint: string;
 }
 
-export default function HeroScene({ lang, heroHeader, heroCtaPrimary, heroCtaSecondary }: HeroSceneProps) {
+export default function HeroScene({
+  lang,
+  heroHeader,
+  heroCtaPrimary,
+  heroCtaSecondary,
+  heroBadge,
+  heroDragHint
+}: HeroSceneProps) {
   const reducedMotion = useReducedMotion();
   const isDraggingRef = useRef(false);
   const prevPointerRef = useRef({ x: 0, y: 0 });
@@ -404,7 +413,7 @@ export default function HeroScene({ lang, heroHeader, heroCtaPrimary, heroCtaSec
         >
           <div className="inline-flex items-center gap-2 rounded-full border border-brand-500/30 bg-brand-500/[0.08] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-400 mb-5">
             <span className="block w-1.5 h-1.5 rounded-full bg-brand-400 animate-pulse" aria-hidden="true" />
-            AI · Sport · Intelligence
+            {heroBadge}
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white text-balance leading-tight max-w-2xl mx-auto">
             {heroHeader}
@@ -465,7 +474,7 @@ export default function HeroScene({ lang, heroHeader, heroCtaPrimary, heroCtaSec
                 d="M15.042 21.672 13.684 16.6m0 0-2.51 2.225.569-9.47 5.227 7.917-3.286-.672Zm-7.518-.267A8.25 8.25 0 1 1 20.25 10.5M8.288 14.212A5.25 5.25 0 1 1 17.25 10.5"
               />
             </svg>
-            <span className="text-[10px] font-medium text-slate-400 tracking-widest uppercase">Drag to rotate</span>
+            <span className="text-[10px] font-medium text-slate-400 tracking-widest uppercase">{heroDragHint}</span>
           </div>
         </div>
       </div>

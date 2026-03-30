@@ -5,20 +5,20 @@ const { lang } = Astro.props as { lang: Lang };
 
 const cards = [
   {
-    title: 'Performance Analytics',
-    desc: 'Turn raw telemetry and match data into actionable insights for athletes and coaching staff.',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="w-5 h-5"><path d="M3 3v18h18"/><path d="M7 16l4-6 4 4 4-8"/></svg>`,
+    title: t(lang, 'whatWeBuildCard1Title'),
+    desc: t(lang, 'whatWeBuildCard1Desc'),
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="w-5 h-5"><path d="M3 3v18h18"/><path d="M7 16l4-6 4 4 4-8"/></svg>`
   },
   {
-    title: 'Computer Vision for Sport',
-    desc: 'Detect, track, and classify athletes and events in real time from video streams.',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="w-5 h-5"><rect x="2" y="2" width="20" height="20" rx="3"/><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>`,
+    title: t(lang, 'whatWeBuildCard2Title'),
+    desc: t(lang, 'whatWeBuildCard2Desc'),
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="w-5 h-5"><rect x="2" y="2" width="20" height="20" rx="3"/><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>`
   },
   {
-    title: 'Fan & Media Intelligence',
-    desc: 'Enrich the spectator experience with real-time data narratives and intelligent media tools.',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="w-5 h-5"><circle cx="12" cy="12" r="3"/><circle cx="4" cy="6" r="2"/><circle cx="20" cy="6" r="2"/><circle cx="4" cy="18" r="2"/><circle cx="20" cy="18" r="2"/><line x1="6" y1="6.5" x2="10" y2="10.5"/><line x1="18" y1="6.5" x2="14" y2="10.5"/><line x1="6" y1="17.5" x2="10" y2="13.5"/><line x1="18" y1="17.5" x2="14" y2="13.5"/></svg>`,
-  },
+    title: t(lang, 'whatWeBuildCard3Title'),
+    desc: t(lang, 'whatWeBuildCard3Desc'),
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="w-5 h-5"><circle cx="12" cy="12" r="3"/><circle cx="4" cy="6" r="2"/><circle cx="20" cy="6" r="2"/><circle cx="4" cy="18" r="2"/><circle cx="20" cy="18" r="2"/><line x1="6" y1="6.5" x2="10" y2="10.5"/><line x1="18" y1="6.5" x2="14" y2="10.5"/><line x1="6" y1="17.5" x2="10" y2="13.5"/><line x1="18" y1="17.5" x2="14" y2="13.5"/></svg>`
+  }
 ];
 ---
 
@@ -33,22 +33,29 @@ const cards = [
   </div>
 
   <div class="mt-12 grid md:grid-cols-3 gap-5">
-    {cards.map((card) => (
-      <div class="group relative rounded-2xl p-px transition hover:-translate-y-0.5"
-           style="background: linear-gradient(135deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02));">
-        <div class="relative rounded-2xl bg-dark-100 p-6 h-full"
-             style="background: linear-gradient(135deg, #0F1728 0%, #0A0F1C 100%);">
-          <!-- Icon -->
-          <div class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-brand-500/10 text-brand-400 mb-4">
-            <Fragment set:html={card.icon} />
+    {
+      cards.map((card) => (
+        <div
+          class="group relative rounded-2xl p-px transition hover:-translate-y-0.5"
+          style="background: linear-gradient(135deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02));"
+        >
+          <div
+            class="relative rounded-2xl bg-dark-100 p-6 h-full"
+            style="background: linear-gradient(135deg, #0F1728 0%, #0A0F1C 100%);"
+          >
+            <div class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-brand-500/10 text-brand-400 mb-4">
+              <Fragment set:html={card.icon} />
+            </div>
+            <h3 class="text-base font-semibold text-white mb-2">{card.title}</h3>
+            <p class="text-sm text-slate-500 leading-relaxed">{card.desc}</p>
+            <div
+              class="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition"
+              style="box-shadow: inset 0 0 0 1px rgba(132,204,22,0.15);"
+              aria-hidden="true"
+            />
           </div>
-          <h3 class="text-base font-semibold text-white mb-2">{card.title}</h3>
-          <p class="text-sm text-slate-500 leading-relaxed">{card.desc}</p>
-          <!-- Hover glow edge -->
-          <div class="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition"
-               style="box-shadow: inset 0 0 0 1px rgba(132,204,22,0.15);" aria-hidden="true"></div>
         </div>
-      </div>
-    ))}
+      ))
+    }
   </div>
 </section>

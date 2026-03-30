@@ -34,33 +34,44 @@ const { lang } = Astro.props as { lang: Lang };
           </span>
         </a>
         <p class="mt-3 text-sm text-slate-500 leading-relaxed max-w-xs">
-          Implementing AI solutions into sport — from performance analytics to fan experience.
+          {t(lang, 'footerTagline')}
         </p>
       </div>
 
       <!-- Navigation -->
       <div>
-        <h3 class="text-xs font-semibold uppercase tracking-widest text-slate-600 mb-4">Navigation</h3>
+        <h3 class="text-xs font-semibold uppercase tracking-widest text-slate-600 mb-4">
+          {t(lang, 'footerNavHeading')}
+        </h3>
         <ul class="space-y-2.5">
-          <li><a href={`/${lang}/`} class="text-sm text-slate-500 transition hover:text-white">Home</a></li>
+          <li>
+            <a href={`/${lang}/`} class="text-sm text-slate-500 transition hover:text-white"
+              >{t(lang, 'footerNavHome')}</a
+            >
+          </li>
           <li>
             <a href={`/${lang}/about`} class="text-sm text-slate-500 transition hover:text-white"
-              >{t(lang, 'navAbout')}</a>
+              >{t(lang, 'navAbout')}</a
+            >
           </li>
           <li>
             <a href={`/${lang}/projects`} class="text-sm text-slate-500 transition hover:text-white"
-              >{t(lang, 'navProjects')}</a>
+              >{t(lang, 'navProjects')}</a
+            >
           </li>
           <li>
             <a href={`/${lang}/contact`} class="text-sm text-slate-500 transition hover:text-white"
-              >{t(lang, 'navContact')}</a>
+              >{t(lang, 'navContact')}</a
+            >
           </li>
         </ul>
       </div>
 
       <!-- Connect -->
       <div>
-        <h3 class="text-xs font-semibold uppercase tracking-widest text-slate-600 mb-4">Connect</h3>
+        <h3 class="text-xs font-semibold uppercase tracking-widest text-slate-600 mb-4">
+          {t(lang, 'footerConnectHeading')}
+        </h3>
         <ul class="space-y-3">
           <li>
             <a
@@ -108,9 +119,9 @@ const { lang } = Astro.props as { lang: Lang };
 
     <div class="mt-10 pt-6 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-3">
       <p class="text-xs text-slate-600">
-        &copy; {new Date().getFullYear()} AGH Athletics Intelligence. All rights reserved.
+        &copy; {new Date().getFullYear()} AGH Athletics Intelligence. {t(lang, 'footerCopyright')}
       </p>
-      <p class="text-xs text-slate-600">AGH University of Science and Technology, Kraków</p>
+      <p class="text-xs text-slate-600">{t(lang, 'footerUniversity')}</p>
     </div>
   </div>
 </footer>

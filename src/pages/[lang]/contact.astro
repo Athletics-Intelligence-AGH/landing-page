@@ -80,7 +80,9 @@ const contactItems = [
         class="rounded-2xl border border-white/[0.07] p-8"
         style="background: linear-gradient(135deg, #0F1728 0%, #0A0F1C 100%);"
       >
-        <p class="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-4">Location</p>
+        <p class="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-4">
+          {t(lang, 'contactLocationLabel')}
+        </p>
         <p class="text-base font-semibold text-white leading-snug mb-1">AGH University of Science and Technology</p>
         <p class="text-sm text-slate-400">
           al. Mickiewicza 30<br />
@@ -88,9 +90,11 @@ const contactItems = [
         </p>
 
         <div class="mt-8 pt-6 border-t border-white/[0.07]">
-          <p class="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-3">Interested in joining?</p>
+          <p class="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-3">
+            {t(lang, 'contactJoinLabel')}
+          </p>
           <p class="text-sm text-slate-400 leading-relaxed mb-4">
-            We are always looking for curious builders — engineers, analysts, designers, and sport scientists.
+            {t(lang, 'contactJoinDesc')}
           </p>
           <a
             href="#"

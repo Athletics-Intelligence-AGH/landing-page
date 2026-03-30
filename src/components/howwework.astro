@@ -6,26 +6,26 @@ const { lang } = Astro.props as { lang: Lang };
 const pillars = [
   {
     number: '01',
-    title: 'Interdisciplinary teams',
-    desc: 'Engineers, analysts, designers, and sport scientists working on the same problems.',
+    title: t(lang, 'howWeWorkPillar1Title'),
+    desc: t(lang, 'howWeWorkPillar1Desc'),
     icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="w-5 h-5"><circle cx="8" cy="7" r="3"/><circle cx="16" cy="7" r="3"/><path d="M2 21c0-4 2.7-6 6-6h8c3.3 0 6 2 6 6"/></svg>`
   },
   {
     number: '02',
-    title: 'Fast prototyping',
-    desc: 'Ideas become testable prototypes in weeks, not months. We ship to learn.',
+    title: t(lang, 'howWeWorkPillar2Title'),
+    desc: t(lang, 'howWeWorkPillar2Desc'),
     icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="w-5 h-5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>`
   },
   {
     number: '03',
-    title: 'Data-driven decisions',
-    desc: 'Every hypothesis is grounded in real sport data. We measure what matters.',
+    title: t(lang, 'howWeWorkPillar3Title'),
+    desc: t(lang, 'howWeWorkPillar3Desc'),
     icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="w-5 h-5"><path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="7"/><rect x="12" y="8" width="3" height="11"/><rect x="17" y="5" width="3" height="14"/></svg>`
   },
   {
     number: '04',
-    title: 'Sport + AI domain',
-    desc: 'Deep sport knowledge paired with applied AI expertise — both sides matter.',
+    title: t(lang, 'howWeWorkPillar4Title'),
+    desc: t(lang, 'howWeWorkPillar4Desc'),
     icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="w-5 h-5"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg>`
   }
 ];
@@ -42,8 +42,7 @@ const pillars = [
         {t(lang, 'howWeWorkSubHeader')}
       </h2>
       <p class="mt-4 text-slate-500 leading-relaxed max-w-sm">
-        We operate as a cross-disciplinary applied research lab inside the university — combining academic rigour with
-        startup speed.
+        {t(lang, 'howWeWorkBody')}
       </p>
     </div>
 
