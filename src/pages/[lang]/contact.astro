@@ -2,6 +2,7 @@
 import Container from '@components/container.astro';
 import Layout from '@layouts/Layout.astro';
 import { defaultLang, isLang, type Lang, languages, t } from '../../i18n';
+import { RECRUITMENT_FORM_LINK } from '../../constants.ts';
 
 export function getStaticPaths() {
   return languages.map((lang) => ({
@@ -85,7 +86,7 @@ const contactItems = [
         </p>
         <p class="text-base font-semibold text-white leading-snug mb-1">AGH University of Science and Technology</p>
         <p class="text-sm text-slate-400">
-          al. Mickiewicza 30<br />
+          al. Mickiewicza 30/C1<br />
           30-059 Kraków, Poland
         </p>
 
@@ -97,7 +98,7 @@ const contactItems = [
             {t(lang, 'contactJoinDesc')}
           </p>
           <a
-            href="#"
+            href={RECRUITMENT_FORM_LINK}
             class="inline-flex items-center gap-2 rounded-full bg-brand-500 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-400 hover:-translate-y-px hover:shadow-xl hover:shadow-brand-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:ring-offset-dark"
           >
             {t(lang, 'joinButton')}

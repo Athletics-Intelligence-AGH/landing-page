@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState, useMemo, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
+import { RECRUITMENT_FORM_LINK } from '../constants.ts';
 
 // ─── Data model ───────────────────────────────────────────────────────────────
 // Formation in the XY plane: y increases upward (GK at bottom, FWDs at top).
@@ -594,7 +595,7 @@ export default function HeroScene({ lang, heroHeader, heroCtaPrimary, heroCtaSec
               </svg>
             </a>
             <a
-              href={`/${lang}/about`}
+              href={RECRUITMENT_FORM_LINK}
               className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.05] px-6 py-3 text-sm font-semibold text-white/80 transition hover:bg-white/10 hover:text-white hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20 focus-visible:ring-offset-2 focus-visible:ring-offset-dark"
             >
               {heroCtaSecondary}
