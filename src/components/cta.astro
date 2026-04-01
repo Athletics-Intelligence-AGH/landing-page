@@ -1,5 +1,6 @@
 ---
 import { t, type Lang } from '../i18n';
+import { RECRUITMENT_FORM_LINK } from '../constants.ts';
 
 const { lang } = Astro.props as { lang: Lang };
 ---
@@ -47,7 +48,7 @@ const { lang } = Astro.props as { lang: Lang };
 
     <div class="mt-8 flex flex-wrap justify-center gap-3">
       <a
-        href="#"
+        href={RECRUITMENT_FORM_LINK}
         class="inline-flex items-center gap-2 rounded-full bg-brand-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-400 hover:-translate-y-px hover:shadow-xl hover:shadow-brand-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:ring-offset-dark"
       >
         {t(lang, 'joinButton')}
