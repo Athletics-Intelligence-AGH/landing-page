@@ -1,4 +1,4 @@
-## Athletics Intelligence Landing Page
+## Athletic Intelligence Landing Page
 
 ## Running app Locally
 

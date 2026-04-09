@@ -36,10 +36,12 @@ const dict = {
     // Contact
     contactHeader: 'Contact',
     contactSubHeader: 'Get in touch with the team.',
-    contactFormHeader: 'AGH Athletics Intelligence',
+    contactFormHeader: 'AGH Athletic Intelligence',
     contactFormDescription: 'We are based at AGH University of Science and Technology in Kraków, Poland.',
     contactEmailLabel: 'Email',
     contactGithubLabel: 'GitHub',
+    contactFacebookLabel: 'Facebook',
+    contactXLabel: 'X',
 
     // 404
     notFound: 'Page not found.',
@@ -171,10 +173,12 @@ const dict = {
     // Contact
     contactHeader: 'Kontakt',
     contactSubHeader: 'Skontaktuj się z naszym zespołem.',
-    contactFormHeader: 'AGH Athletics Intelligence',
+    contactFormHeader: 'AGH Athletic Intelligence',
     contactFormDescription: 'Jesteśmy na AGH Akademii Górniczo-Hutniczej w Krakowie.',
     contactEmailLabel: 'Email',
     contactGithubLabel: 'GitHub',
+    contactFacebookLabel: 'Facebook',
+    contactXLabel: 'X',
 
     // 404
     notFound: 'Nie znaleziono strony.',
